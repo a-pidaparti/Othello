@@ -13,7 +13,7 @@ import turtle
 
 def tile_maker(x,y,color):          #COMPLETE
     t = turtle.Turtle()             #takes turtle coordinates and creates stamp on board
-    t.ht()
+    t.ht()                          # takes tile turtle coordinates, goes to them and creates a tile at that location
     t.up()
     t.speed(0)
     t.goto(x,y)
@@ -24,7 +24,7 @@ def tile_maker(x,y,color):          #COMPLETE
     t.up()
 
 def CoordinateStringtoList(CoordinateString):       #COMPLETE
-    coordinatelist = [int(CoordinateString[0]),int(CoordinateString[2])]   #takes user input string and outputs coordinate list
+    coordinatelist = [int(CoordinateString[0]),int(CoordinateString[2])]   #converts board coordinates to a list
     return coordinatelist
 
 def CoordinateConverter(row,column):        #COMPLETE
@@ -47,7 +47,7 @@ def boardUpdate(board):         #COMPLETE   #updates board at any point
     t.up()
     t.speed(0)
     coordinates = []
-    for row in range(8):
+    for row in range(8):    #iterates through board
         for space in range(8):
             coordinates = CoordinateConverter(row,space)
             if board[row][space] == "white":
@@ -64,7 +64,7 @@ def createBoard():          #COMPLETE       #creates initial board in turtle gra
     t.goto(-200, 200)
     t.pd()
     t.begin_fill()
-    for i in range(4):
+    for i in range(4):  #draws outline
         t.seth(360 - (90 * i))
         t.fd(400)
     t.end_fill()
@@ -107,9 +107,9 @@ def CheckSurroundingTiles(board,row,col,color):     #COMPLETE
         oppositeColor = "black"
     colCheckList = [-1,0,1]             # checks surrounding tiles
     rowCheckList = [-1,0,1]
-    if row == 7:                    #lines 95 to 102 modify iteration list if in corner or by wall
-        rowCheckList = [-1,0]
-    if row == 0:
+    if row == 7:                    #lines 110 to 116 modify iteration list if in corner or by wall
+        rowCheckList = [-1,0]       #if the selected tile is next to a wall or corner, the program should
+    if row == 0:                    #only check the tiles that are within the board
         rowCheckList = [0,1]
     if col == 7:
         colCheckList = [-1,0]
